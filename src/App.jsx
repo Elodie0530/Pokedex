@@ -1,5 +1,6 @@
 import PokemonCard from "./components/PokemonCard"
-import { useState } from "react";
+import { useState } from "react"
+import NavBar from "./components/NavBar";
 
 function App() {
   const [pokemonIndex, setpokemonIndex] = useState(0);
@@ -15,9 +16,8 @@ function App() {
       <PokemonCard pokemon={pokemonList[pokemonIndex]} />
       <p>Valeur du tableau: {pokemonIndex}</p>
       <p>{pokemonIndex+1}/{pokemonList.length}</p>
-      {pokemonIndex > 0?<button onClick={pre}>Précédent</button>:<></>}
-      {pokemonIndex < pokemonList.length - 1?<button onClick={next}>Suivant</button>:<></>}
-    </div>
+      <NavBar next={next} pre={pre} pokemonIndex={pokemonIndex} pokemonList={pokemonList} />
+     </div>
   )
 
 }
