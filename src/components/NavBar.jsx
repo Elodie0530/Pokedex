@@ -1,9 +1,35 @@
+import PropTypes from "prop-types"; 
 
-function NavBar(props) {
-return (<>
-      {props.pokemonIndex > 0?<button onClick={props.pre}>Précédent</button>:<></>}
-      {props.pokemonIndex < props.pokemonList.length - 1?<button onClick={props.next}>Suivant</button>:<></>}
-    </>)}
-  
+function NavBar({ pokemonList, setPokemonIndex }) {
+    return (
+
+        <nav>
+
+            {pokemonList.map((pokemon, index) => (
+                <button
+                    type="button"
+                    key={pokemon.name}
+                    onClick={() => setPokemonIndex(index)}
+                >
+                    {pokemon.name}
+                </button>
+            ))}
+
+        </nav>
+    );
+}
+
+
+NavBar.propTypes = {
+    setPokemonIndex: PropTypes.func.isRequired,
+    pokemonList: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        imgSrc: PropTypes.string,
+      }).isRequired
+    ),
+  };
+
+
 
 export default NavBar;
